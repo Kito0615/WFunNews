@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingViewController">
+            <connections>
+                <outlet property="location" destination="Jn8-fv-Aca" id="X0t-BS-sLr"/>
+                <outlet property="settingList" destination="MQS-fc-imw" id="MN4-Ja-20M"/>
+                <outlet property="userIcon" destination="viE-Mm-pur" id="IOK-kb-1iY"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="weatherIcon" destination="dvp-Oc-xGD" id="fV5-eo-LuM"/>
+                <outlet property="weatherPic" destination="jts-bu-Cfn" id="8LD-jC-ims"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UseCenterWeatherBGSunny.png" translatesAutoresizingMaskIntoConstraints="NO" id="jts-bu-Cfn">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="cgB-5V-ON8"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="usercenter_userdefaulticon.png" translatesAutoresizingMaskIntoConstraints="NO" id="viE-Mm-pur">
+                    <rect key="frame" x="147" y="60" width="80" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="8Vv-z7-jOv"/>
+                        <constraint firstAttribute="width" constant="80" id="sz6-2p-fKv"/>
+                    </constraints>
+                </imageView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MQS-fc-imw">
+                    <rect key="frame" x="0.0" y="200" width="375" height="467"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dvp-Oc-xGD">
+                    <rect key="frame" x="295" y="20" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="Tnl-56-XHz"/>
+                        <constraint firstAttribute="height" constant="60" id="UoV-Xj-xT8"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jn8-fv-Aca">
+                    <rect key="frame" x="8" y="20" width="200" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="BnU-pX-nzb"/>
+                        <constraint firstAttribute="width" constant="200" id="uxA-GD-Xba"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.40000000596046448" green="0.40000000596046448" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="jts-bu-Cfn" firstAttribute="centerY" secondItem="viE-Mm-pur" secondAttribute="centerY" id="0Hr-NS-IV2"/>
+                <constraint firstItem="MQS-fc-imw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9Eg-Xd-SCV"/>
+                <constraint firstItem="jts-bu-Cfn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="E2c-EL-v9U"/>
+                <constraint firstAttribute="trailing" secondItem="dvp-Oc-xGD" secondAttribute="trailing" constant="20" id="HIC-Yf-8dP"/>
+                <constraint firstItem="Jn8-fv-Aca" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="Qsk-ch-Smt"/>
+                <constraint firstItem="Jn8-fv-Aca" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="azO-YP-F1s"/>
+                <constraint firstAttribute="trailing" secondItem="MQS-fc-imw" secondAttribute="trailing" id="cXv-ge-s7D"/>
+                <constraint firstAttribute="bottom" secondItem="MQS-fc-imw" secondAttribute="bottom" id="eyW-Pg-tb4"/>
+                <constraint firstAttribute="trailing" secondItem="jts-bu-Cfn" secondAttribute="trailing" id="jgh-aI-37r"/>
+                <constraint firstItem="jts-bu-Cfn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="lRm-kg-EEC"/>
+                <constraint firstItem="MQS-fc-imw" firstAttribute="top" secondItem="jts-bu-Cfn" secondAttribute="bottom" id="lm6-NA-eKJ"/>
+                <constraint firstItem="dvp-Oc-xGD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="sKz-YZ-iT6"/>
+                <constraint firstItem="jts-bu-Cfn" firstAttribute="centerX" secondItem="viE-Mm-pur" secondAttribute="centerX" constant="0.5" id="yEX-cm-ppB"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="263.5" y="469.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="UseCenterWeatherBGSunny.png" width="320" height="213"/>
+        <image name="usercenter_userdefaulticon.png" width="62" height="62"/>
+    </resources>
+</document>
