@@ -16,6 +16,7 @@
 		8AA6B75F1C1E601B00640BF5 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA6B75E1C1E601B00640BF5 /* libstdc++.tbd */; };
 		8AA6B7631C1E60AD00640BF5 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA6B7611C1E60AD00640BF5 /* SettingViewController.m */; };
 		8AA6B7641C1E60AD00640BF5 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AA6B7621C1E60AD00640BF5 /* SettingViewController.xib */; };
+		8AF9276B1C1FB8F300566DE8 /* Content.html in Resources */ = {isa = PBXBuildFile; fileRef = 8AF9276A1C1FB8F300566DE8 /* Content.html */; };
 		BC35C3E41BCBDD6E000DEB84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BC35C3E31BCBDD6E000DEB84 /* main.m */; };
 		BC35C3E71BCBDD6E000DEB84 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BC35C3E61BCBDD6E000DEB84 /* AppDelegate.m */; };
 		BC35C3FE1BCBDD6E000DEB84 /* WFunNewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC35C3FD1BCBDD6E000DEB84 /* WFunNewsTests.m */; };
@@ -203,6 +204,7 @@
 		8AA6B7601C1E60AD00640BF5 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingViewController.h; path = Base/SettingViewController.h; sourceTree = SOURCE_ROOT; };
 		8AA6B7611C1E60AD00640BF5 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingViewController.m; path = Base/SettingViewController.m; sourceTree = SOURCE_ROOT; };
 		8AA6B7621C1E60AD00640BF5 /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingViewController.xib; path = Base/SettingViewController.xib; sourceTree = SOURCE_ROOT; };
+		8AF9276A1C1FB8F300566DE8 /* Content.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Content.html; sourceTree = "<group>"; };
 		BC35C3DE1BCBDD6E000DEB84 /* WFunNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WFunNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC35C3E21BCBDD6E000DEB84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC35C3E31BCBDD6E000DEB84 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -534,6 +536,7 @@
 		BC35C3D51BCBDD6E000DEB84 = {
 			isa = PBXGroup;
 			children = (
+				8AF9276A1C1FB8F300566DE8 /* Content.html */,
 				8AA6B75E1C1E601B00640BF5 /* libstdc++.tbd */,
 				8AA6B75C1C1E601500640BF5 /* libiconv.tbd */,
 				8AA6B75A1C1E600B00640BF5 /* libstdc++.6.0.9.tbd */,
@@ -1247,6 +1250,7 @@
 				BC35C41C1BCBDE3F000DEB84 /* tabbar_news_hl@2x.png in Resources */,
 				BCCEBADF1BCF598900F63BF3 /* wechat_friend.png in Resources */,
 				BCCEBAE21BCF5A0F00F63BF3 /* tencent.png in Resources */,
+				8AF9276B1C1FB8F300566DE8 /* Content.html in Resources */,
 				BCB75D931BCE714900669C88 /* CommentCellTypeTwo.xib in Resources */,
 				BC35C4361BCBDE60000DEB84 /* UseCenterWeatherBGCloudy@2x.png in Resources */,
 				BC35C41D1BCBDE3F000DEB84 /* tabbar_picture@2x.png in Resources */,

@@ -92,10 +92,17 @@
         
         NSDictionary * newsContentDict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         
-        NSString * html_header = [NSString stringWithFormat:@"<head><style type=\"text/css\">img{width:%fpx !important;}\n\rbody{background-color:transparent;font-size:12pt;line-height:18pt;width:%fpx;margin-left:10px;margin-top:10px;text-indent:12pt}\n\r</style></head>", SCREEN_WIDTH - 20, SCREEN_WIDTH - 20];
-        NSString * sourceString = [NSString stringWithFormat:@"%@%@", html_header, newsContentDict[@"message"]];
+        NSMutableString * html_file = [NSMutableString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Content.html" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
         
-        _webString = [self insertBreakLineSymbolBeforeImageWithHtmlString:sourceString];
+        NSRange divRange = [html_file rangeOfString:@"</div>"];
+        
+        [html_file insertString:[newsContentDict objectForKey:@"message"] atIndex:divRange.location];
+        
+        
+//        NSString * html_header = [NSString stringWithFormat:@"<head><style type=\"text/css\">img{width:%fpx !important;}\n\rbody{background-color:transparent;font-size:12pt;line-height:18pt;width:%fpx;margin-left:10px;margin-top:10px;text-indent:12pt}\n\r</style></head>", SCREEN_WIDTH - 20, SCREEN_WIDTH - 20];
+//        NSString * sourceString = [NSString stringWithFormat:@"%@%@", html_header, newsContentDict[@"message"]];
+        
+        _webString = [self insertBreakLineSymbolBeforeImageWithHtmlString:html_file];
         
         self.newsCommentUrl = newsContentDict[@"comment_url"];
         self.newsId = newsContentDict[@"tid"];
