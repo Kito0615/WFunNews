@@ -72,7 +72,7 @@
 
 - (void)loadFromLocal
 {
-    NSData * newsData = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"news%ld", self.newsClassId]];
+    NSData * newsData = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"news%d", self.newsClassId]];
     [_newsArr removeAllObjects];
     [_newsArr addObjectsFromArray:[NSKeyedUnarchiver unarchiveObjectWithData:newsData]];
     [self.newsList reloadData];
@@ -89,23 +89,23 @@
     
     NSData * newsData = [NSKeyedArchiver archivedDataWithRootObject:_newsArr];
     
-    [[NSUserDefaults standardUserDefaults] setObject:newsData forKey:[NSString stringWithFormat:@"news%ld", self.newsClassId]];
+    [[NSUserDefaults standardUserDefaults] setObject:newsData forKey:[NSString stringWithFormat:@"news%d", self.newsClassId]];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     NSLog(@"save successed!");
     
 }
 
-- (void)loadDataWithsid:(NSInteger)sid  withPage:(NSInteger)page
+- (void)loadDataWithsid:(int)sid  withPage:(int)page
 {
     MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     _requestManager = [AFHTTPRequestOperationManager manager];
     _requestManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    NSLog(@"%@", [NSString stringWithFormat:@"%@%@", BASE_URL, [NSString stringWithFormat:@"&sid=%ld&page=%ld", sid,page]]);
+    NSLog(@"%@", [NSString stringWithFormat:@"%@%@", BASE_URL, [NSString stringWithFormat:@"&sid=%d&page=%d", sid,page]]);
     
-    [_requestManager GET:[NSString stringWithFormat:@"%@%@", BASE_URL, [NSString stringWithFormat:@"&sid=%ld&page=%ld", sid,page]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [_requestManager GET:[NSString stringWithFormat:@"%@%@", BASE_URL, [NSString stringWithFormat:@"&sid=%d&page=%d", sid,page]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary * responseData = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         
         if (_currentPage == 1) {

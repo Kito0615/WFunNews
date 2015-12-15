@@ -25,11 +25,11 @@ static BOOL _netWorkChecked;
     Reachability * _reachableManager;
     
 }
-@property (nonatomic, assign) NSInteger currentPage;
-@property (nonatomic, assign) NSInteger newsClassId;
+@property (nonatomic, assign) int currentPage;
+@property (nonatomic, assign) int newsClassId;
 - (void)isOnline;
 
-- (void)loadDataWithsid:(NSInteger)sid  withPage:(NSInteger)page;
+- (void)loadDataWithsid:(int)sid  withPage:(int)page;
 
 @property (weak, nonatomic) IBOutlet UITableView *newsList;
 

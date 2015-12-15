@@ -134,10 +134,12 @@
  */
 - (void)reGeoCode
 {
-    _search = [[AMapSearchAPI alloc] initWithSearchKey:@"847370890d324af7962d4992f11a8b9e" Delegate:self];
+    _search = [[AMapSearchAPI alloc] init];
+    _search.delegate = self;
+    [AMapSearchServices sharedServices].apiKey = @"847370890d324af7962d4992f11a8b9e";
     _search.delegate = self;
     AMapReGeocodeSearchRequest * request = [[AMapReGeocodeSearchRequest alloc] init];
-    request.searchType = AMapSearchType_ReGeocode;
+//    request.searchType = AMapSearchType_ReGeocode;
     request.location = [AMapGeoPoint locationWithLatitude:_userLocation.coordinate.latitude longitude:_userLocation.coordinate.longitude];
     
     [_search AMapReGoecodeSearch:request];
