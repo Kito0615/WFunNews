@@ -57,7 +57,7 @@
             break;
         case NotReachable:
             [self loadFromLocal];
-            [[[UIAlertView alloc] initWithTitle:@"提示" message:@"当前无网络连接，请检查您的网络！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"Network", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"Confirm", nil) otherButtonTitles: nil] show];
             break;
             
         default:
@@ -220,13 +220,13 @@
     
     switch (section) {
         case 0:
-            headerTitleLabel.text = @"  当日热点";
+            headerTitleLabel.text = NSLocalizedString(@"TopToday", nil);
             break;
         case 1:
-            headerTitleLabel.text = @"  当周热点";
+            headerTitleLabel.text = NSLocalizedString(@"TopWeek", nil);
             break;
         case 2:
-            headerTitleLabel.text = @"  当月热点";
+            headerTitleLabel.text = NSLocalizedString(@"TopMonth", nil);
             break;
             
         default:

@@ -34,7 +34,7 @@
     NSArray * unSelectArr = @[ @"tabbar_picture",@"tabbar_news", @"tabbar_setting"];
     NSArray * selectArr = @[ @"tabbar_picture_hl",@"tabbar_news_hl", @"tabbar_setting_hl"];
     
-    NSArray * titleArr = @[@"即时新闻",@"热点新闻",@"系统设置"];
+    NSArray * titleArr = @[NSLocalizedString(@"Intime", nil), NSLocalizedString(@"Hot", nil), NSLocalizedString(@"Setting", nil)];
     
     NSMutableArray * controllersArr = [[NSMutableArray alloc] init];
     

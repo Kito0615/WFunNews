@@ -1,0 +1,42 @@
+/* 
+  Language.strings
+  WFunNews
+
+  Created by AnarL on 12/23/15.
+  Copyright © 2015 AnarL. All rights reserved.
+*/
+
+"Language"="简体中文";
+
+"Title"="新闻评论";
+"Ordered"="顺序";
+"Latest"="逆序";
+"Tips"="提示";
+"Network"="当前无网络连接，请检查网络连接情况";
+"Confirm"="确定";
+"NoComment"="该新闻当前无评论。";
+"Reply"="回复:";
+"EnterComment"="请输入您的评论...";
+"Submit"="提交评论成功...";
+"Comment"="说点什么吧...";
+"NoMore"="没有更多评论了...";
+"Intime"="即时新闻";
+"Hot"="热点新闻";
+"Setting"="系统设置";
+"Content"="新闻详情";
+"Shared"="分享成功";
+"Newest"="最新";
+"Important"="重要";
+"Phone"="手机";
+"PC"="电脑";
+"Microsoft"="微软";
+"Around"="周边";
+"Notification"="推送消息";
+"Feedback"="意见反馈";
+"About"="关于智机";
+"Contact"="联系我们";
+"Recommend"="推荐给好友";
+"Mail"="请发送邮件至：admin@wpxap.com";
+"TopToday"="  当日热点";
+"TopWeek"="  当周热点";
+"TopMonth"="  当月热点";

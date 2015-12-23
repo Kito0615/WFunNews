@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    _titleArr = @[@"最新", @"重要", @"手机", @"电脑", @"微软", @"周边"];
+    _titleArr = @[NSLocalizedString(@"Newest", nil), NSLocalizedString(@"Important", nil), NSLocalizedString(@"Phone", nil), NSLocalizedString(@"PC", nil), NSLocalizedString(@"Microsoft", nil), NSLocalizedString(@"Around", nil)];
     [self createViewControllers];
     
     [self setNeedsStatusBarAppearanceUpdate];

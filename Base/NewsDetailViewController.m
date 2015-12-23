@@ -39,7 +39,7 @@
     _oldTitleFrame = self.newsTitleLabel.frame;
     _oldInfoFrame = self.newsInfoLabel.frame;
     
-    self.title = @"新闻详情";
+    self.title = NSLocalizedString(@"Content", nil);
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:COLORWITHRGB(255, 255, 255)};
     self.navigationController.navigationBar.barTintColor = COLORWITHRGB(240, 95, 102);
     [self createNavigationBarButtons];
@@ -254,7 +254,7 @@
     [[UMSocialDataService defaultDataService] postSNSWithTypes:@[UMShareToSina] content:[NSString stringWithFormat:@"%@%@", self.model.newsTitle, self.model.newsWebUrl] image:self.newsImage location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response) {
         if (response.responseCode == UMSResponseCodeSuccess) {
             
-            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"分享成功！" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"Shared", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
             [alert show];
             
             [self performSelector:@selector(cancelAlertView:) withObject:alert afterDelay:1];
@@ -269,7 +269,7 @@
     [[UMSocialDataService defaultDataService] postSNSWithTypes:@[UMShareToTencent] content:[NSString stringWithFormat:@"%@%@", self.model.newsTitle, self.model.newsWebUrl] image:self.newsImage location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response) {
         if (response.responseCode == UMSResponseCodeSuccess) {
             
-            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"分享成功！" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"Shared", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
             [alert show];
             
             [self performSelector:@selector(cancelAlertView:) withObject:alert afterDelay:1];
@@ -283,7 +283,7 @@
 {
     [[UMSocialDataService defaultDataService] postSNSWithTypes:@[UMShareToRenren] content:[NSString stringWithFormat:@"%@%@", self.model.newsTitle, self.model.newsWebUrl] image:self.newsImage location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response) {
         
-        UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"分享成功！" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+        UIAlertView * alert =[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"Shared", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
         [alert show];
         
         [self performSelector:@selector(cancelAlertView:) withObject:alert afterDelay:1];
@@ -301,7 +301,7 @@
     [[UMSocialDataService defaultDataService] postSNSWithTypes:@[UMShareToQzone] content:[NSString stringWithFormat:@"%@%@", self.model.newsTitle, self.model.newsWebUrl] image:self.newsImage location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response) {
         if (response.responseCode == UMSResponseCodeSuccess) {
             
-            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"分享成功！" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"Shared", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
             [alert show];
             
             [self performSelector:@selector(cancelAlertView:) withObject:alert afterDelay:1];
@@ -317,7 +317,7 @@
     [[UMSocialDataService defaultDataService] postSNSWithTypes:@[UMShareToWechatSession] content:[NSString stringWithFormat:@"%@%@", self.model.newsTitle, self.model.newsWebUrl] image:self.newsImage location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response) {
         if (response.responseCode == UMSResponseCodeSuccess) {
             
-            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"分享成功！" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"Shared", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
             [alert show];
             
             [self performSelector:@selector(cancelAlertView:) withObject:alert afterDelay:1];
@@ -333,7 +333,7 @@
     [[UMSocialDataService defaultDataService] postSNSWithTypes:@[UMShareToWechatTimeline] content:[NSString stringWithFormat:@"%@%@", self.model.newsTitle, self.model.newsWebUrl] image:self.newsImage location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response) {
         if (response.responseCode == UMSResponseCodeSuccess) {
             
-            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"分享成功！" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"Shared", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
             [alert show];
             
             [self performSelector:@selector(cancelAlertView:) withObject:alert afterDelay:1];
@@ -419,7 +419,7 @@
 - (IBAction)submitCommentBtn:(UIButton *)sender {
     
     if (self.commentField.text.length == 0) {
-        [[[UIAlertView alloc] initWithTitle:@"提示" message:@"亲，说点什么吧…" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"EnterComment", nil) delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
         return;
     }
     
@@ -434,7 +434,7 @@
         NSDictionary * retDict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         
         if (retDict[@"pid"]) {
-            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"提交评论成功！跳转评论页…" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"Submit", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
             [alert show];
             
             [self performSelector:@selector(cancelAlertView:) withObject:alert afterDelay:1];

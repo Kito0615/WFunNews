@@ -58,7 +58,7 @@
         case NotReachable:
             
             if (!_netWorkChecked) {
-                [[[UIAlertView alloc] initWithTitle:@"提示" message:@"当前无网络，请检查网络连接状态！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
+                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"Network", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Confirm", nil) otherButtonTitles:nil] show];
                 _netWorkChecked = YES;
             }
             [self loadFromLocal];

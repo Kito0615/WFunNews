@@ -35,7 +35,7 @@
     // 添加监听键盘收起通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHidden:) name:UIKeyboardWillHideNotification object:nil];
     
-    self.navigationItem.title = @"新闻评论";
+    self.navigationItem.title = NSLocalizedString(@"Title", nil);
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:COLORWITHRGB(255, 255, 255)};
     
@@ -45,8 +45,8 @@
     _sortBtn.frame = CGRectMake(0, 0, 30 , 20);
     _sortBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     
-    [_sortBtn setTitle:@"顺序" forState:UIControlStateSelected];
-    [_sortBtn setTitle:@"逆序" forState:UIControlStateNormal];
+    [_sortBtn setTitle:NSLocalizedString(@"Ordered", nil) forState:UIControlStateSelected];
+    [_sortBtn setTitle:NSLocalizedString(@"Latest", nil) forState:UIControlStateNormal];
     _sortBtn.selected = NO;
     [_sortBtn addTarget:self action:@selector(sortCommentArr:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -87,11 +87,11 @@
             break;
         case ReachableViaWWAN:
             
-            [[[UIAlertView alloc] initWithTitle:@"提示" message:@"当前使用的2G/3G/4G网络，请注意您的流量！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
+            [self getAllComment];
             
             break;
         case NotReachable:
-            [[[UIAlertView alloc] initWithTitle:@"提示" message:@"当前无网络连接，请检查您的网络连接情况." delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"Network", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"Confirm", nil) otherButtonTitles: nil] show];
             break;
             
         default:
@@ -122,7 +122,7 @@
         
         if (dict[@"comment"] == [NSNull null]) {
             
-            [[[UIAlertView alloc] initWithTitle:@"提示" message:@"该新闻当前没有评论！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"NoComment", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"Confirm", nil) otherButtonTitles:nil] show];
             
             [hud hide:YES];
             
@@ -308,7 +308,7 @@
 - (void)replyCommentTo:(NSNumber *)pid
 {
     [self.commentField becomeFirstResponder];
-    self.commentField.placeholder = @"回复:";
+    self.commentField.placeholder = NSLocalizedString(@"Reply", nil);
     self.commentPid = pid;
 }
 
@@ -329,7 +329,7 @@
 - (IBAction)submitBtn:(UIButton *)sender {
     
     if (self.commentField.text.length == 0) {
-        [[[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入你的评论！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"EnterComment", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Confirm", nil) otherButtonTitles:nil] show];
         return;
     }
     
@@ -347,7 +347,7 @@
         
         NSDictionary * retDict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         if (retDict[@"pid"]) {
-            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:@"提交评论成功！跳转评论页…" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+            UIAlertView * alert =[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"Submit", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
             [alert show];
             
             [self performSelector:@selector(cancelAlertView:) withObject:alert afterDelay:1];
@@ -360,7 +360,7 @@
     }];
     [self.commentField resignFirstResponder];
     self.commentField.text = @"";
-    self.commentField.placeholder = @"说点什么吧...";
+    self.commentField.placeholder = NSLocalizedString(@"Comment", nil);
     [self getAllComment];
 }
 
@@ -398,7 +398,7 @@
     self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         
         if (_commentArr.count < 50) {
-            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有更多评论了！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"NoMore", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Confirm", nil) otherButtonTitles:nil];
             [alertView show];
 
             [self.tableView.header endRefreshing];
