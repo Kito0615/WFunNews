@@ -79,6 +79,10 @@
     } else {
         NSLog(@"关闭推送");
     }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:_isPushOn ? @"True" : @"False" forKey:@"Push"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     _isPushOn = !_isPushOn;
     sw.on = _isPushOn;
 }

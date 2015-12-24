@@ -33,6 +33,25 @@
     _window.rootViewController = _tabbarController;
     
     [_window makeKeyAndVisible];
+    
+    // Required
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        //可以添加自定义categories
+        [APService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+                                                       UIUserNotificationTypeSound |
+                                                       UIUserNotificationTypeAlert)
+                                           categories:nil];
+    } else {
+        //categories 必须为nil
+        [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                       UIRemoteNotificationTypeSound |
+                                                       UIRemoteNotificationTypeAlert)
+                                           categories:nil];
+    }
+    
+    // Required
+    [APService setupWithOption:launchOptions];
+    
     return YES;
 }
 
@@ -44,6 +63,34 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     return [UMSocialSnsService handleOpenURL:url];
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    [APService registerDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    NSString * pushString = [[NSUserDefaults standardUserDefaults] objectForKey:@"Push"];
+    
+    if ([pushString isEqualToString:@"True"]) {
+        [APService handleRemoteNotification:userInfo];
+    } else {
+        NSLog(@"Push Off");
+    }
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    NSString * pushString = [[NSUserDefaults standardUserDefaults] objectForKey:@"Push"];
+    
+    if ([pushString isEqualToString:@"True"]) {
+        [APService handleRemoteNotification:userInfo];
+        completionHandler(UIBackgroundFetchResultNewData);
+    } else {
+        NSLog(@"Push Off");
+    }
 }
 
 
@@ -59,6 +106,9 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    [application setApplicationIconBadgeNumber:0];
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

@@ -14,6 +14,7 @@
 #import "UMSocialSinaSSOHandler.h"
 #import "UMSocialQQHandler.h"
 #import "UMSocialWechatHandler.h"
+#import "APService.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {

@@ -11,6 +11,7 @@
 
 #define SUBMIT_COMMENT_URL @"http://api.wpxap.com/Send?tid=%ld&app=anar0615"
 #define COLORWITHRGB(r,g,b) [UIColor colorWithRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:1]
+#define CSS_STYLE @"<style type=\"text/css\">img{width:expression(this.width>%lf?\"%lfpx\":this.width+\"px\"); } </style>"
 
 #import "NewsDetailViewController.h"
 #import "CommentController.h"
@@ -98,8 +99,17 @@
         
         [html_file insertString:[newsContentDict objectForKey:@"message"] atIndex:divRange.location];
         
+        NSString * html_header = [NSString stringWithFormat:@"<head><link href=\"http://vjs.zencdn.net/4.10/video-js.css\"><script scr=\"http://vjs.zencdn.net/4.10/video.js\"></script><style type=\"text/css\">img{width:%fpx !important;}\n\rbody{background-color:transparent;font-size:12pt;line-height:18pt;width:%fpx;margin-left:10px;margin-top:10px;text-indent:12pt}\n\r</style></head>", SCREEN_WIDTH - 20, SCREEN_WIDTH - 20];
         
-//        NSString * html_header = [NSString stringWithFormat:@"<head><style type=\"text/css\">img{width:%fpx !important;}\n\rbody{background-color:transparent;font-size:12pt;line-height:18pt;width:%fpx;margin-left:10px;margin-top:10px;text-indent:12pt}\n\r</style></head>", SCREEN_WIDTH - 20, SCREEN_WIDTH - 20];
+        NSRange bodyRange = [html_file rangeOfString:@"<body "];
+        [html_file insertString:html_header atIndex:bodyRange.location];
+        
+        NSString * imageStyle = [NSString stringWithFormat:CSS_STYLE, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.width];
+        
+        NSRange scriptRange = [html_file rangeOfString:@"</script>"];
+        
+        [html_file insertString:imageStyle atIndex:(scriptRange.location + scriptRange.length)];
+        
 //        NSString * sourceString = [NSString stringWithFormat:@"%@%@", html_header, newsContentDict[@"message"]];
         
         _webString = [self insertBreakLineSymbolBeforeImageWithHtmlString:html_file];
@@ -108,6 +118,9 @@
         self.newsId = newsContentDict[@"tid"];
         
         [self.newsContentView loadHTMLString:_webString baseURL:nil];
+        
+        NSLog(@"HTML CONTENT:%@", _webString);
+        
         self.newsContentView.scrollView.showsVerticalScrollIndicator = NO;
         [self.newsContentView setDataDetectorTypes:UIDataDetectorTypeAll];
         
