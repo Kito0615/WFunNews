@@ -2,7 +2,7 @@
 //  SettingViewController.m
 //  WFunNews
 //
-//  Created by qianfeng on 15/10/13.
+//  Created by AnarL on 15/10/13.
 //  Copyright (c) 2015年 AnarL. All rights reserved.
 //
 
@@ -92,7 +92,7 @@
 {
     switch (indexPath.row) {
         case 1:
-            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Feedback", nil) message:NSLocalizedString(@"Mail", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"Confirm", nil) otherButtonTitles: nil] show];
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Feedback", nil) message:[NSString stringWithFormat:@"Version:%@\n%@",[NSString stringWithFormat:@"%@(%@)",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]], NSLocalizedString(@"Mail", nil)] delegate:nil cancelButtonTitle:NSLocalizedString(@"Confirm", nil) otherButtonTitles: nil] show];
             break;
         case 2:
             [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"About", nil) message:@"智机网是国内公认最具人气的Windows Phone第一垂直社区，在WP7垂直领域拥有一定的影响力。智机网崇尚“做站就是做人”的社区建设精神，坚持以会员为中心，不断创新，力求发展。" delegate:nil cancelButtonTitle:NSLocalizedString(@"Confirm", nil) otherButtonTitles: nil] show];

@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  WFunNews
 //
-//  Created by qianfeng on 15/10/12.
+//  Created by AnarL on 15/10/12.
 //  Copyright (c) 2015年 AnarL. All rights reserved.
 //
 
@@ -19,8 +19,8 @@
     // Override point for customization after application launch.
     
     [UMSocialData setAppKey:@"5613779167e58e0d200008c7"];
-    [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
-    [UMSocialSinaSSOHandler openNewSinaSSOWithRedirectURL:@"http://sns.whalecloud.com/sina/callback"];
+    
+    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"1309410722" RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     [UMSocialQQHandler setQQWithAppId:@"1104820983" appKey:@"77cil6x3qIJtIJnK" url:@"http://bbs.wfun.com"];
     [UMSocialWechatHandler setWXAppId:@"wx225a5e952bc8c22f" appSecret:@"64ece97d5cc3c4b85a87dcb926194b52" url:@"http://bbs.wfun.com"];
     

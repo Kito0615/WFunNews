@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -22,7 +22,7 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VKl-JZ-f8a">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VKl-JZ-f8a">
                     <rect key="frame" x="37" y="40" width="48" height="48"/>
                     <animations/>
                     <state key="normal" backgroundImage="sina.png">
@@ -32,7 +32,7 @@
                         <action selector="shareToSina:" destination="Pms-Pn-4Dg" eventType="touchUpInside" id="OaN-SN-JNZ"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KiP-iT-Cke">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KiP-iT-Cke">
                     <rect key="frame" x="121" y="40" width="48" height="48"/>
                     <animations/>
                     <state key="normal" backgroundImage="tencent.png">
@@ -42,7 +42,7 @@
                         <action selector="shareToTencent:" destination="Pms-Pn-4Dg" eventType="touchUpInside" id="2sE-Ez-LuY"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bWw-5f-JdP">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bWw-5f-JdP">
                     <rect key="frame" x="206" y="40" width="48" height="48"/>
                     <animations/>
                     <state key="normal" backgroundImage="renren.png">
@@ -52,7 +52,7 @@
                         <action selector="shareToRenRen:" destination="Pms-Pn-4Dg" eventType="touchUpInside" id="FC5-db-ZFC"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uZB-bN-wKe">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uZB-bN-wKe">
                     <rect key="frame" x="290" y="40" width="48" height="48"/>
                     <animations/>
                     <state key="normal" backgroundImage="qzone.png">
@@ -62,7 +62,7 @@
                         <action selector="shareToQZone:" destination="Pms-Pn-4Dg" eventType="touchUpInside" id="kLg-12-c0K"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KNp-hk-3ra">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KNp-hk-3ra">
                     <rect key="frame" x="37" y="120" width="48" height="48"/>
                     <animations/>
                     <state key="normal" backgroundImage="wechat.png">
@@ -72,7 +72,7 @@
                         <action selector="shareToWechat:" destination="Pms-Pn-4Dg" eventType="touchUpInside" id="2sD-zz-Yn8"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzT-A8-Ky5">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzT-A8-Ky5">
                     <rect key="frame" x="121" y="120" width="48" height="48"/>
                     <animations/>
                     <state key="normal" backgroundImage="wechat_friend.png">

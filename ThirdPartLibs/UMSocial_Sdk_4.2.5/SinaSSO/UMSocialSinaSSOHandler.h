@@ -15,6 +15,16 @@
 @interface UMSocialSinaSSOHandler : NSObject
 
 /**
+ 设置使用最新新浪微博SDK来处理SSO授权(通过客户端设置appkey进行访问)
+ 
+ @param appKey 新浪App Key
+ @param redirectURL 回调URL
+ 
+ */
+
++(void)openNewSinaSSOWithAppKey:(NSString *)appKey
+                    RedirectURL:(NSString *)redirectURL;
+/**
  设置使用最新新浪微博SDK来处理SSO授权
  
  @param redirectURL 回调URL

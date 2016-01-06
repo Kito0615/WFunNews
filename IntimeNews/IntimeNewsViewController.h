@@ -2,7 +2,7 @@
 //  IntimeNewsViewController.h
 //  WFunNews
 //
-//  Created by qianfeng on 15/10/12.
+//  Created by AnarL on 15/10/12.
 //  Copyright (c) 2015年 AnarL. All rights reserved.
 //
 

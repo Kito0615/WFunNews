@@ -2,7 +2,7 @@
 //  SharePlate.m
 //  WFunNews
 //
-//  Created by qianfeng on 15/10/15.
+//  Created by AnarL on 15/10/15.
 //  Copyright (c) 2015年 AnarL. All rights reserved.
 //
 

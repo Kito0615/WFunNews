@@ -2,7 +2,7 @@
 //  BaseViewController.m
 //  WFunNews
 //
-//  Created by qianfeng on 15/10/13.
+//  Created by AnarL on 15/10/13.
 //  Copyright (c) 2015年 AnarL. All rights reserved.
 //
 
@@ -15,12 +15,12 @@
 #import "NewsCell.h"
 
 @interface BaseViewController ()
-
 @end
 
 @implementation BaseViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
@@ -189,10 +189,6 @@
     NewsDetailViewController * ndvc = [[NewsDetailViewController alloc] init];
     NewsModel * model = _newsArr[indexPath.row];
     ndvc.model = model;
-    
-    NewsCell * cell = (id)[tableView cellForRowAtIndexPath:indexPath];
-    
-    ndvc.newsImage = cell.newsPic.image;
     
     ndvc.newsTitleString = model.newsTitle;
     NSDate * newsDate = [NSDate dateWithTimeIntervalSince1970:[model.newsDBDateLine floatValue]];

@@ -1,0 +1,41 @@
+/* 
+  Language.strings
+  WFunNews
+
+  Created by AnarL on 12/23/15.
+  Copyright © 2015 AnarL. All rights reserved.
+*/
+"Language"="简体中文";
+
+"Title"="Comment";
+"Ordered"="Ordered";
+"Latest"="Latest";
+"Tips"="Tips";
+"Network"="Please check your network connection.";
+"Confirm"="Confirm";
+"NoComment"="There is no comment about this news.";
+"Reply"="Reply:";
+"EnterComment"="Enter your comment here...";
+"Submit"="Submit comment success...";
+"Comment"="Enter your comment here...";
+"NoMore"="No more comments.";
+"Intime"="Intime";
+"Hot"="TopNews";
+"Setting"="Settings";
+"Content"="Content";
+"Shared"="Shared success.";
+"Newest"="LATEST";
+"Important"="IMPORTANT";
+"Phone"="PHONE";
+"PC"="COMPUTER";
+"Microsoft"="MICROSOFT";
+"Around"="XBOX";
+"Notification"="Notification";
+"Feedback"="Feedback";
+"About"="About WFUN";
+"Contact"="Contact";
+"Recommend"="Recommend to friends";
+"Mail"="Please mail to :admin@wpxap.com";
+"TopToday"="  TopToday";
+"TopWeek"="  TopWeek";
+"TopMonth"="  TopMonth";

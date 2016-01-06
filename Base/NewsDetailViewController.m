@@ -2,7 +2,7 @@
 //  NewsDetailViewController.m
 //  WFunNews
 //
-//  Created by qianfeng on 15/10/13.
+//  Created by AnarL on 15/10/13.
 //  Copyright (c) 2015年 AnarL. All rights reserved.
 //
 
@@ -23,6 +23,8 @@
     UIView * _shadowView;
     
     BOOL _shareBtnClicked;
+    
+    UIImageView * _cacheView;
     
 }
 
@@ -67,6 +69,9 @@
     }
     self.newsContentView.delegate = self;
     [self isOnline];
+    
+    _cacheView = [[UIImageView alloc] init];
+    [_cacheView sd_setImageWithURL:self.model.newsPicUrl];
 }
 
 - (void)isOnline
@@ -206,11 +211,10 @@
 //    [UMSocialData defaultData].extConfig.wechatSessionData.url = @"";
 #if 1
     
-    
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:@"5613779167e58e0d200008c7"
                                       shareText:[NSString stringWithFormat:@"%@%@", self.model.newsTitle, self.model.newsWebUrl]
-                                     shareImage:self.newsImage
+                                     shareImage:[_cacheView image]
                                 shareToSnsNames:@[UMShareToSina, UMShareToQQ, UMShareToQzone, UMShareToRenren,UMShareToTencent, UMShareToWechatTimeline, UMShareToLWSession, UMShareToWechatFavorite]
                                        delegate:self];
 #endif
@@ -270,7 +274,7 @@
 - (void)shareToSinaBtnClicked
 {
     
-    [[UMSocialDataService defaultDataService] postSNSWithTypes:@[UMShareToSina] content:[NSString stringWithFormat:@"%@%@", self.model.newsTitle, self.model.newsWebUrl] image:self.newsImage location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response) {
+    [[UMSocialDataService defaultDataService] postSNSWithTypes:@[UMShareToSina] content:[NSString stringWithFormat:@"%@%@", self.model.newsTitle, self.model.newsWebUrl] image:[UIImage imageWithContentsOfFile:self.model.newsPicUrl] location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response) {
         if (response.responseCode == UMSResponseCodeSuccess) {
             
             UIAlertView * alert =[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"Shared", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
@@ -285,7 +289,7 @@
 
 - (void)shareToTencentBtnClicked
 {
-    [[UMSocialDataService defaultDataService] postSNSWithTypes:@[UMShareToTencent] content:[NSString stringWithFormat:@"%@%@", self.model.newsTitle, self.model.newsWebUrl] image:self.newsImage location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response) {
+    [[UMSocialDataService defaultDataService] postSNSWithTypes:@[UMShareToTencent] content:[NSString stringWithFormat:@"%@%@", self.model.newsTitle, self.model.newsWebUrl] image:[UIImage imageWithContentsOfFile:self.model.newsPicUrl] location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response) {
         if (response.responseCode == UMSResponseCodeSuccess) {
             
             UIAlertView * alert =[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"Shared", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
@@ -300,7 +304,7 @@
 
 - (void)shareToRenRenBtnClicked
 {
-    [[UMSocialDataService defaultDataService] postSNSWithTypes:@[UMShareToRenren] content:[NSString stringWithFormat:@"%@%@", self.model.newsTitle, self.model.newsWebUrl] image:self.newsImage location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response) {
+    [[UMSocialDataService defaultDataService] postSNSWithTypes:@[UMShareToRenren] content:[NSString stringWithFormat:@"%@%@", self.model.newsTitle, self.model.newsWebUrl] image:[UIImage imageWithContentsOfFile:self.model.newsPicUrl] location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response) {
         
         UIAlertView * alert =[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"Shared", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
         [alert show];
@@ -317,7 +321,7 @@
 - (void)shareToQzoneBtnClicked
 {
     
-    [[UMSocialDataService defaultDataService] postSNSWithTypes:@[UMShareToQzone] content:[NSString stringWithFormat:@"%@%@", self.model.newsTitle, self.model.newsWebUrl] image:self.newsImage location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response) {
+    [[UMSocialDataService defaultDataService] postSNSWithTypes:@[UMShareToQzone] content:[NSString stringWithFormat:@"%@%@", self.model.newsTitle, self.model.newsWebUrl] image:[UIImage imageWithContentsOfFile:self.model.newsPicUrl] location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response) {
         if (response.responseCode == UMSResponseCodeSuccess) {
             
             UIAlertView * alert =[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"Shared", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
@@ -333,7 +337,7 @@
 
 - (void)shareToWechatBtnClicked
 {
-    [[UMSocialDataService defaultDataService] postSNSWithTypes:@[UMShareToWechatSession] content:[NSString stringWithFormat:@"%@%@", self.model.newsTitle, self.model.newsWebUrl] image:self.newsImage location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response) {
+    [[UMSocialDataService defaultDataService] postSNSWithTypes:@[UMShareToWechatSession] content:[NSString stringWithFormat:@"%@%@", self.model.newsTitle, self.model.newsWebUrl] image:[UIImage imageWithContentsOfFile:self.model.newsPicUrl] location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response) {
         if (response.responseCode == UMSResponseCodeSuccess) {
             
             UIAlertView * alert =[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"Shared", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
@@ -349,7 +353,7 @@
 
 - (void)shareToWechatTimelineBtnClicked
 {
-    [[UMSocialDataService defaultDataService] postSNSWithTypes:@[UMShareToWechatTimeline] content:[NSString stringWithFormat:@"%@%@", self.model.newsTitle, self.model.newsWebUrl] image:self.newsImage location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response) {
+    [[UMSocialDataService defaultDataService] postSNSWithTypes:@[UMShareToWechatTimeline] content:[NSString stringWithFormat:@"%@%@", self.model.newsTitle, self.model.newsWebUrl] image:[UIImage imageWithContentsOfFile:self.model.newsPicUrl] location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response) {
         if (response.responseCode == UMSResponseCodeSuccess) {
             
             UIAlertView * alert =[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"Shared", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];

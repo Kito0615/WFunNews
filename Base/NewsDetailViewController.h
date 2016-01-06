@@ -2,7 +2,7 @@
 //  NewsDetailViewController.h
 //  WFunNews
 //
-//  Created by qianfeng on 15/10/13.
+//  Created by AnarL on 15/10/13.
 //  Copyright (c) 2015年 AnarL. All rights reserved.
 //
 
@@ -15,6 +15,7 @@
 #import "Reachability.h"
 #import "NewsModel.h"
 #import "UMSocial.h"
+#import "UIImageView+WebCache.h"
 
 @interface NewsDetailViewController : UIViewController<UIScrollViewDelegate, UMSocialUIDelegate, UIWebViewDelegate>
 {
@@ -36,7 +37,6 @@
 @property (nonatomic, copy) NSString * newsInfoString;
 @property (nonatomic, copy) NSString * webUrl;
 @property (nonatomic, copy) NSString * newsCommentUrl;
-@property (nonatomic, assign) UIImage * newsImage;
 @property (weak, nonatomic) IBOutlet UILabel *newsTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *newsInfoLabel;
 @property (weak, nonatomic) IBOutlet UIWebView *newsContentView;
