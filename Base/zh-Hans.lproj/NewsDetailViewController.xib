@@ -49,7 +49,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FOc-J3-e5R">
                     <rect key="frame" x="0.0" y="618" width="375" height="49"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Obk-Mr-yj4">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="说点什么吧..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Obk-Mr-yj4">
                             <rect key="frame" x="8" y="11" width="301" height="30"/>
                             <animations/>
                             <constraints>
