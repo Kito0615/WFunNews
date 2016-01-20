@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 #import "MJRefresh.h"
+#import "AppDelegate.h"
 
 @interface LatestViewController : BaseViewController
 

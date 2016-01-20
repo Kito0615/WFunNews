@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AFNetworking.h"
 
-@interface MyTestController : UITabBarController
+@interface MyTestController : UITabBarController <UIAlertViewDelegate>
+{
+    AFHTTPSessionManager * _manager;
+}
 
 @end

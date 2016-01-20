@@ -33,4 +33,6 @@ static BOOL _netWorkChecked;
 
 @property (weak, nonatomic) IBOutlet UITableView *newsList;
 
+- (void)showNotificationNews:(NSString *)newsTitle;
+
 @end

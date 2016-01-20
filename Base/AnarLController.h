@@ -8,13 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "AnarLTabBar.h"
-#import "IntimeNewsViewController.h"
 //#import "HotNewsController.h"
 //#import "SettingController.h"
 
 @interface AnarLController : UITabBarController <AnarTabBarDelegate>
 {
-    IntimeNewsViewController * _newsVC;
     UIViewController * _hotNewsVC;
     UIViewController * _settingVC;
 }

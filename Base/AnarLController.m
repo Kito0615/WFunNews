@@ -7,8 +7,12 @@
 //
 
 #import "AnarLController.h"
+#import "IntimeNewsViewController.h"
 
 @interface AnarLController ()
+{
+    IntimeNewsViewController * _newsVC;
+}
 
 @end
 

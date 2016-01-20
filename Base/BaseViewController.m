@@ -233,4 +233,9 @@
 {
     return UIStatusBarStyleLightContent;
 }
+
+- (void)showNotificationNews:(NSString *)newsTitle
+{
+
+}
 @end

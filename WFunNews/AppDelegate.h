@@ -15,11 +15,15 @@
 #import "UMSocialQQHandler.h"
 #import "UMSocialWechatHandler.h"
 #import "APService.h"
+#import <KSCrash/KSCrashInstallationStandard.h>
+#import "BaseViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
     MyTestController * _tabbarController;
 }
+
+@property (nonatomic, weak) BaseViewController * mainViewController;
 
 @property (strong, nonatomic) UIWindow *window;
 

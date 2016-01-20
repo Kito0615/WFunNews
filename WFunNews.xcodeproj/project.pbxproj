@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A3C2A0E1C4F3D2000C59125 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A3C2A0D1C4F3D2000C59125 /* MapKit.framework */; };
 		8A466E901C3A69CD003DD8B6 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A466E8F1C3A69CD003DD8B6 /* libz.tbd */; };
 		8A466E921C3A69D4003DD8B6 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A466E911C3A69D4003DD8B6 /* libsqlite3.tbd */; };
 		8A466E941C3A69DA003DD8B6 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A466E931C3A69DA003DD8B6 /* libiconv.tbd */; };
 		8A466E961C3A69E5003DD8B6 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A466E951C3A69E5003DD8B6 /* libstdc++.tbd */; };
 		8A466E981C3A69EE003DD8B6 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A466E971C3A69EE003DD8B6 /* libstdc++.6.0.9.tbd */; };
 		8A4F7D311C2A44F90061D196 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8A4F7D331C2A44F90061D196 /* Localizable.strings */; };
-		8A51AB151C291B170021BA66 /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A51AB141C291B170021BA66 /* AMapSearchKit.framework */; };
-		8A51AB171C291B330021BA66 /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A51AB161C291B330021BA66 /* MAMapKit.framework */; };
 		8A51AB191C291B3C0021BA66 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A51AB181C291B3C0021BA66 /* libstdc++.6.0.9.dylib */; };
 		8A51AB1B1C291B420021BA66 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A51AB1A1C291B420021BA66 /* libstdc++.dylib */; };
 		8A51AB1D1C291B4B0021BA66 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A51AB1C1C291B4B0021BA66 /* libiconv.dylib */; };
@@ -23,6 +22,7 @@
 		8A51AB221C291B960021BA66 /* CommentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A51AB241C291B960021BA66 /* CommentController.xib */; };
 		8A51AB271C291BD00021BA66 /* NewsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A51AB291C291BD00021BA66 /* NewsDetailViewController.xib */; };
 		8A51AB2C1C291BE90021BA66 /* SharePlate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A51AB2E1C291BE90021BA66 /* SharePlate.xib */; };
+		8A741ED31C48CFB400F8D2D3 /* KSCrash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A741ED21C48CFB400F8D2D3 /* KSCrash.framework */; };
 		8AA6B7631C1E60AD00640BF5 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA6B7611C1E60AD00640BF5 /* SettingViewController.m */; };
 		8AA6B7641C1E60AD00640BF5 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AA6B7621C1E60AD00640BF5 /* SettingViewController.xib */; };
 		8AC422651C3A669A006CBDC5 /* libUMSocial_Sdk_4.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AC422641C3A669A006CBDC5 /* libUMSocial_Sdk_4.4.a */; };
@@ -204,6 +204,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8A3C2A0D1C4F3D2000C59125 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8A466E8F1C3A69CD003DD8B6 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		8A466E911C3A69D4003DD8B6 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		8A466E931C3A69DA003DD8B6 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
@@ -211,8 +212,6 @@
 		8A466E971C3A69EE003DD8B6 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		8A4F7D321C2A44F90061D196 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		8A4F7D341C2A44FB0061D196 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		8A51AB141C291B170021BA66 /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMapSearchKit.framework; path = ../../../Downloads/AMapSearchKit.framework; sourceTree = "<group>"; };
-		8A51AB161C291B330021BA66 /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MAMapKit.framework; path = ../../../Downloads/MAMapKit.framework; sourceTree = "<group>"; };
 		8A51AB181C291B3C0021BA66 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		8A51AB1A1C291B420021BA66 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		8A51AB1C1C291B4B0021BA66 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
@@ -223,6 +222,7 @@
 		8A51AB2D1C291BE90021BA66 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/SharePlate.xib"; sourceTree = "<group>"; };
 		8A51AB311C291C1F0021BA66 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "zh-Hans"; path = "zh-Hans.lproj/Info.plist"; sourceTree = "<group>"; };
 		8A51AB331C291C200021BA66 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Info.plist; sourceTree = "<group>"; };
+		8A741ED21C48CFB400F8D2D3 /* KSCrash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KSCrash.framework; sourceTree = "<group>"; };
 		8AA6B7601C1E60AD00640BF5 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingViewController.h; path = Base/SettingViewController.h; sourceTree = SOURCE_ROOT; };
 		8AA6B7611C1E60AD00640BF5 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingViewController.m; path = Base/SettingViewController.m; sourceTree = SOURCE_ROOT; };
 		8AA6B7621C1E60AD00640BF5 /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingViewController.xib; path = Base/SettingViewController.xib; sourceTree = SOURCE_ROOT; };
@@ -522,6 +522,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A3C2A0E1C4F3D2000C59125 /* MapKit.framework in Frameworks */,
 				8A466E981C3A69EE003DD8B6 /* libstdc++.6.0.9.tbd in Frameworks */,
 				8A466E961C3A69E5003DD8B6 /* libstdc++.tbd in Frameworks */,
 				8A466E941C3A69DA003DD8B6 /* libiconv.tbd in Frameworks */,
@@ -536,13 +537,12 @@
 				8A51AB1D1C291B4B0021BA66 /* libiconv.dylib in Frameworks */,
 				8A51AB1B1C291B420021BA66 /* libstdc++.dylib in Frameworks */,
 				8A51AB191C291B3C0021BA66 /* libstdc++.6.0.9.dylib in Frameworks */,
-				8A51AB171C291B330021BA66 /* MAMapKit.framework in Frameworks */,
-				8A51AB151C291B170021BA66 /* AMapSearchKit.framework in Frameworks */,
 				BCCEBACF1BCF3C9400F63BF3 /* UIKit.framework in Frameworks */,
 				BCCEBACD1BCF3C8E00F63BF3 /* Foundation.framework in Frameworks */,
 				BCCEBACB1BCF3C8300F63BF3 /* CoreGraphics.framework in Frameworks */,
 				BCCEBAC91BCF3C7A00F63BF3 /* QuartzCore.framework in Frameworks */,
 				BCCEBAC71BCF3C7300F63BF3 /* CoreLocation.framework in Frameworks */,
+				8A741ED31C48CFB400F8D2D3 /* KSCrash.framework in Frameworks */,
 				BCCEBAC51BCF3C6B00F63BF3 /* CoreTelephony.framework in Frameworks */,
 				BCCEBAC31BCF3C6400F63BF3 /* SystemConfiguration.framework in Frameworks */,
 				BCCEBAC11BCF3C5B00F63BF3 /* Security.framework in Frameworks */,
@@ -580,6 +580,8 @@
 		BC35C3D51BCBDD6E000DEB84 = {
 			isa = PBXGroup;
 			children = (
+				8A3C2A0D1C4F3D2000C59125 /* MapKit.framework */,
+				8A741ED21C48CFB400F8D2D3 /* KSCrash.framework */,
 				8A466E971C3A69EE003DD8B6 /* libstdc++.6.0.9.tbd */,
 				8A466E951C3A69E5003DD8B6 /* libstdc++.tbd */,
 				8A466E931C3A69DA003DD8B6 /* libiconv.tbd */,
@@ -593,8 +595,6 @@
 				8A51AB1C1C291B4B0021BA66 /* libiconv.dylib */,
 				8A51AB1A1C291B420021BA66 /* libstdc++.dylib */,
 				8A51AB181C291B3C0021BA66 /* libstdc++.6.0.9.dylib */,
-				8A51AB161C291B330021BA66 /* MAMapKit.framework */,
-				8A51AB141C291B170021BA66 /* AMapSearchKit.framework */,
 				8AF9276A1C1FB8F300566DE8 /* Content.html */,
 				BCCEBB0F1BCFBA9B00F63BF3 /* OpenGLES.framework */,
 				BCCEBB0D1BCFBA6E00F63BF3 /* AMap.bundle */,
@@ -1264,10 +1264,12 @@
 				TargetAttributes = {
 					BC35C3DD1BCBDD6E000DEB84 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = C65KKZNS3M;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 0;
 							};
 						};
 					};
@@ -1632,7 +1634,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Yuqi Liu (C65KKZNS3M)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yuqi Liu (C65KKZNS3M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1661,7 +1663,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wfun.WPXap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1bb976eb-f265-491d-87b2-816d556eac26";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1671,7 +1673,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Yuqi Liu (C65KKZNS3M)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yuqi Liu (C65KKZNS3M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1700,7 +1702,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wfun.WPXap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1bb976eb-f265-491d-87b2-816d556eac26";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

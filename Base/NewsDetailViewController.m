@@ -71,7 +71,7 @@
     [self isOnline];
     
     _cacheView = [[UIImageView alloc] init];
-    [_cacheView sd_setImageWithURL:self.model.newsPicUrl];
+    [_cacheView sd_setImageWithURL:[NSURL URLWithString:self.model.newsPicUrl]];
 }
 
 - (void)isOnline

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 
+
 @interface AppDelegate ()
 
 @end
@@ -34,6 +35,7 @@
     
     [_window makeKeyAndVisible];
     
+#if 0
     // Required
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
         //可以添加自定义categories
@@ -48,9 +50,15 @@
                                                        UIRemoteNotificationTypeAlert)
                                            categories:nil];
     }
-    
     // Required
     [APService setupWithOption:launchOptions];
+    
+    
+    KSCrashInstallationStandard * installation = [KSCrashInstallationStandard sharedInstance];
+    installation.url = [NSURL URLWithString:@"https://collector.bughd.com/kscrash?key=f579f5f4db3d3d46612a40b4d06e66bb"];
+    [installation install];
+    [installation sendAllReportsWithCompletion:nil];
+#endif
     
     return YES;
 }
@@ -75,6 +83,12 @@
     NSString * pushString = [[NSUserDefaults standardUserDefaults] objectForKey:@"Push"];
     
     if ([pushString isEqualToString:@"True"]) {
+        
+        NSDictionary * aps = [userInfo valueForKey:@"aps"];
+        NSString * notificationContent = [aps valueForKey:@"alert"];
+        
+        [self.mainViewController showNotificationNews:notificationContent];
+        
         [APService handleRemoteNotification:userInfo];
     } else {
         NSLog(@"Push Off");

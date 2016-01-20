@@ -19,7 +19,7 @@
 {
     NSArray * _titleArr;
     
-    LatestViewController * _latestVC;
+    BaseViewController * _latestVC;
     ImportantViewController * _importantVC;
     PhoneViewController * _phoneVC;
     PCViewController * _pcVC;

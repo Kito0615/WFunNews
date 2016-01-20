@@ -17,7 +17,14 @@
 
 #import "SettingViewController.h"
 
-@interface SettingViewController ()
+@interface SettingViewController ()<CLLocationManagerDelegate>
+{
+    CLLocationManager * _locationManager;
+    CLLocation * _currentLocation;
+    
+    CLGeocoder * _geoCoder;
+}
+
 
 @end
 
@@ -27,11 +34,23 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    [MAMapServices sharedServices].apiKey = @"847370890d324af7962d4992f11a8b9e";
-    _mapView = [[MAMapView alloc] init];
-    _mapView.showsUserLocation = YES;
-    _mapView.delegate = self;
-    _mapView.userTrackingMode = MAUserTrackingModeNone;
+    _locationManager = [[CLLocationManager alloc] init];
+    
+    if (![CLLocationManager locationServicesEnabled]) {
+        NSLog(@"定位服务没有打开，请打开设置");
+        return;
+    }
+    
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
+        [_locationManager requestWhenInUseAuthorization];
+    } else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse){
+        _locationManager.delegate = self;
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        CLLocationDistance distance = 10.0;
+        _locationManager.distanceFilter = distance;
+        [_locationManager startUpdatingLocation];
+    }
+    
     _requestSuccess = NO;
     [self createUI];
     
@@ -134,80 +153,52 @@
 }
 
 /**
- *  逆地理编码
+ *  查询逆地理编码
  */
 - (void)reGeoCode
 {
-    _search = [[AMapSearchAPI alloc] init];
-    _search.delegate = self;
-    [AMapSearchServices sharedServices].apiKey = @"847370890d324af7962d4992f11a8b9e";
-    _search.delegate = self;
-    AMapReGeocodeSearchRequest * request = [[AMapReGeocodeSearchRequest alloc] init];
-//    request.searchType = AMapSearchType_ReGeocode;
-    request.location = [AMapGeoPoint locationWithLatitude:_userLocation.coordinate.latitude longitude:_userLocation.coordinate.longitude];
+    _geoCoder = [[CLGeocoder alloc] init];
     
-    [_search AMapReGoecodeSearch:request];
-    
-}
-/**
- *  查询逆地理编码请求
- *
- *  @param request  请求
- *  @param response 响应
- */
--(void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response
-{
-    self.location.text = [NSString stringWithFormat:@"%@%@%@",response.regeocode.addressComponent.province, response.regeocode.addressComponent.city , response.regeocode.addressComponent.district];
-    
-    NSLog(@"%@", [NSString stringWithFormat:@"%@%@%@",response.regeocode.addressComponent.province, response.regeocode.addressComponent.city , response.regeocode.addressComponent.district]);
-    
-#pragma mark -汉字转拼音
-#if 0
-    if (self.location.text.length) {
-        NSMutableString * ms = [[NSMutableString alloc] initWithString:self.location.text];
-        if (CFStringTransform((__bridge CFMutableStringRef)ms, 0, kCFStringTransformMandarinLatin, NO)){
-            NSLog(@"%@", ms);
-        }
-        if (CFStringTransform((__bridge CFMutableStringRef)ms, 0, kCFStringTransformStripDiacritics, NO)) {
-            NSLog(@"%@", ms);
-        }
-        for (int i = 0; i < ms.length; i++) {
-            char ch = [ms characterAtIndex:i];
-            if (ch == ' ') {
-                [ms deleteCharactersInRange:NSMakeRange(i, 1)];
-                i -- ;
-            }
-        }
-        if (CFStringTransform((__bridge CFMutableStringRef)ms, 0, kCFStringTransformStripDiacritics, NO)) {
-            NSLog(@"%@", ms);
-        }
-    }
-    if (response.regeocode.addressComponent.city.length == 0) {
-        [self loadWeatherWithLocationString:response.regeocode.addressComponent.province];
-    } else {
-        [self loadWeatherWithLocationString:response.regeocode.addressComponent.city];
-    }
-#endif
+    [_geoCoder reverseGeocodeLocation:_currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        
+        CLPlacemark * placeMark = [placemarks firstObject];
+        
+        CLLocation * location = placeMark.location;
+        CLRegion * region = placeMark.region;
+        
+        NSDictionary * addressDict = placeMark.addressDictionary;
+        
+        NSLog(@"==========位置：%@\n=========区域：%@\n=======详细：%@===========", location, region, addressDict);
+        
+        self.location.text = [NSString stringWithFormat:@"%@%@%@", addressDict[@"State"], addressDict[@"City"], addressDict[@"SubLocality"]];
+        
+    }];
     
 }
 
-#pragma mark -是否获取到当前用户的坐标
-- (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
+#pragma mark -CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
-    //    NSLog(@"latitude: %f, longitude: %f", userLocation.coordinate.latitude, userLocation.coordinate.longitude);
-    _userLocation = userLocation;
+    CLLocation * location = [locations firstObject];
+    _currentLocation = location;
+    CLLocationCoordinate2D coordinate = location.coordinate;
     
-    [self loadWeatherWithLocation:userLocation];
+    NSLog(@"经度：%f\n纬度：%f", coordinate.longitude, coordinate.latitude);
+    NSLog(@"海拔：%f\n方向：%f\n速度：%f", location.altitude, location.course, location.speed);
+    
+    [self loadWeatherWithUserLocation:location];
     [self reGeoCode];
+    
 }
 
 #pragma mark -获取当前用户所在地的天气状况
-- (void)loadWeatherWithLocation:(MAUserLocation *)userlocation
+
+- (void)loadWeatherWithUserLocation:(CLLocation *)location
 {
-    NSString * requestArg = [NSString stringWithFormat:WEATHER_ARGUMENTS, userlocation.coordinate.longitude, userlocation.coordinate.latitude];
+    NSString * requestArg = [NSString stringWithFormat:WEATHER_ARGUMENTS, location.coordinate.longitude, location.coordinate.latitude];
     
     [self request:WEATHER_REQUEST_URL_BY_POINT withHttpArg:requestArg];
-    
 }
 /**
  *  请求天气信息
