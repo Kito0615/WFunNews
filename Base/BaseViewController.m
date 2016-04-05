@@ -13,6 +13,7 @@
 
 #import "BaseViewController.h"
 #import "NewsCell.h"
+#import "UIImage+GifToArray.h"
 
 @interface BaseViewController ()
 @end
@@ -221,6 +222,19 @@
 #pragma mark -下拉刷新当前
 - (void)pullToRefresh
 {
+//    MJRefreshGifHeader * header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(isOnline)];
+//    
+//    NSArray * gifFrames = [UIImage gifToArray:[[NSBundle mainBundle] pathForResource:@"loading.gif" ofType:nil]];
+////    [header setImages:gifFrames forState:MJRefreshStateRefreshing];
+//    [header setImages:gifFrames duration:6 forState:MJRefreshStateRefreshing];
+//    
+//    header.lastUpdatedTimeLabel.hidden = YES;
+//    header.stateLabel.hidden = YES;
+//    
+//    self.newsList.header = header;
+//    self.newsList.backgroundColor = [UIColor whiteColor];
+    
+    
     self.newsList.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _netWorkChecked = NO;
         self.currentPage = 1;

@@ -14,7 +14,7 @@
 #import "UMSocialSinaSSOHandler.h"
 #import "UMSocialQQHandler.h"
 #import "UMSocialWechatHandler.h"
-#import "APService.h"
+#import "JPUSHService.h"
 #import <KSCrash/KSCrashInstallationStandard.h>
 #import "BaseViewController.h"
 

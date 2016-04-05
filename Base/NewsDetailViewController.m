@@ -367,14 +367,6 @@
 
 }
 
-
-
-
-
-
-
-
-
 #pragma mark -UMSocialUIDelegate
 - (void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
 {
@@ -442,20 +434,23 @@
 - (IBAction)submitCommentBtn:(UIButton *)sender {
     
     if (self.commentField.text.length == 0) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"EnterComment", nil) delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"EnterComment", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Confirm", nil) otherButtonTitles:nil] show];
         return;
     }
     
-    NSString * postUrlStr = [NSString stringWithFormat:SUBMIT_COMMENT_URL, self.newsId.integerValue];
-    NSString * tokenStr = [NSString stringWithFormat:@"%ld|0|1173785|%@|cappuccino", self.newsId.integerValue, [UIDevice currentDevice].name];
-    NSString * encodedTokenStr = [Base64Encryption base64StringFromText:tokenStr];
     
-    NSDictionary * postDict = @{@"token":encodedTokenStr, @"message":self.commentField.text, @"devicename":[UIDevice currentDevice].name};
+    NSString * postUrlStr = [NSString stringWithFormat:@"http://api.wpxap.com/Send?tid=%ld&app=anar0615", self.newsId.integerValue];
+    NSString * tokenStr = [NSString stringWithFormat:@"%ld|%ld|1173785|%@|cappuccino", self.newsId.integerValue, self.newsId.integerValue, [[UIDevice currentDevice].identifierForVendor UUIDString]];
+    NSLog(@"%@", [[UIDevice currentDevice].identifierForVendor UUIDString]);
+    NSLog(@"%ld", self.newsId.integerValue);
+    NSString * encodedToken = [Base64Encryption base64StringFromText:tokenStr];
+    
+    NSDictionary * postDict = @{@"token":encodedToken, @"message":self.commentField.text, @"devicename":[UIDevice currentDevice].name};
+    
     
     [_requestManager POST:postUrlStr parameters:postDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSDictionary * retDict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        
         if (retDict[@"pid"]) {
             UIAlertView * alert =[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"Submit", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
             [alert show];
@@ -464,17 +459,13 @@
             
         }
         
-        NSLog(@"%@", retDict);
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
         NSLog(@"%@", error);
         NSLog(@"%@", error.localizedFailureReason);
-        
     }];
-    
     [self.commentField resignFirstResponder];
     self.commentField.text = @"";
+    self.commentField.placeholder = NSLocalizedString(@"Comment", nil);
     
     [self commentButtonClicked];
     

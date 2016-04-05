@@ -35,23 +35,23 @@
     
     [_window makeKeyAndVisible];
     
-#if 0
+#if 1
     // Required
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
         //可以添加自定义categories
-        [APService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
                                                        UIUserNotificationTypeSound |
                                                        UIUserNotificationTypeAlert)
                                            categories:nil];
     } else {
         //categories 必须为nil
-        [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
                                                        UIRemoteNotificationTypeSound |
                                                        UIRemoteNotificationTypeAlert)
                                            categories:nil];
     }
     // Required
-    [APService setupWithOption:launchOptions];
+    [JPUSHService setupWithOption:launchOptions appKey:@"16b222d5ee0b4d94a4dbb6da" channel:@"AppStore" apsForProduction:YES];
     
     
     KSCrashInstallationStandard * installation = [KSCrashInstallationStandard sharedInstance];
@@ -75,24 +75,17 @@
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-    [APService registerDeviceToken:deviceToken];
+    [JPUSHService registerDeviceToken:deviceToken];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    NSString * pushString = [[NSUserDefaults standardUserDefaults] objectForKey:@"Push"];
+    NSDictionary * aps = [userInfo valueForKey:@"aps"];
+    NSString * notificationContent = [aps valueForKey:@"alert"];
     
-    if ([pushString isEqualToString:@"True"]) {
-        
-        NSDictionary * aps = [userInfo valueForKey:@"aps"];
-        NSString * notificationContent = [aps valueForKey:@"alert"];
-        
-        [self.mainViewController showNotificationNews:notificationContent];
-        
-        [APService handleRemoteNotification:userInfo];
-    } else {
-        NSLog(@"Push Off");
-    }
+    [self.mainViewController showNotificationNews:notificationContent];
+    
+    [JPUSHService handleRemoteNotification:userInfo];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
@@ -100,7 +93,7 @@
     NSString * pushString = [[NSUserDefaults standardUserDefaults] objectForKey:@"Push"];
     
     if ([pushString isEqualToString:@"True"]) {
-        [APService handleRemoteNotification:userInfo];
+        [JPUSHService handleRemoteNotification:userInfo];
         completionHandler(UIBackgroundFetchResultNewData);
     } else {
         NSLog(@"Push Off");

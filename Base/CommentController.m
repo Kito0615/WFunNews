@@ -54,7 +54,7 @@
     self.navigationController.navigationBar.barTintColor = COLORWITHRGB(240, 95, 102);
     
     _sortBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _sortBtn.frame = CGRectMake(0, 0, 30 , 20);
+    _sortBtn.frame = CGRectMake(0, 0, 65, 20);
     _sortBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     
     [_sortBtn setTitle:NSLocalizedString(@"Ordered", nil) forState:UIControlStateSelected];
@@ -301,7 +301,7 @@
         NSString * quoteStr = [isQuoteArr[0] substringFromIndex:3];
         NSString * commentStr = isQuoteArr[1];
         
-        CGSize quoteSize = [quoteStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 120, 200) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil].size;
+        CGSize quoteSize = [quoteStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 120, 200) options: NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil].size;
         
         CGSize commentSize = [commentStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 75, 200) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil].size;
         
@@ -347,8 +347,8 @@
     
     
     NSString * postUrlStr = [NSString stringWithFormat:@"http://api.wpxap.com/Send?tid=%ld&app=anar0615", self.newsId.integerValue];
-    NSString * tokenStr = [NSString stringWithFormat:@"%ld|%ld|1173785|%@|cappuccino", self.newsId.integerValue, self.commentPid.integerValue, [UIDevice currentDevice].name];
-    NSLog(@"%@", [UIDevice currentDevice].name);
+    NSString * tokenStr = [NSString stringWithFormat:@"%ld|%ld|1173785|%@|cappuccino", self.newsId.integerValue, self.commentPid.integerValue, [[UIDevice currentDevice].identifierForVendor UUIDString]];
+    NSLog(@"%@", [[UIDevice currentDevice].identifierForVendor UUIDString]);
     NSLog(@"%ld", self.commentPid.integerValue);
     NSString * encodedToken = [Base64Encryption base64StringFromText:tokenStr];
     

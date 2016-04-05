@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "UMSocial.h"
-#import "APService.h"
+#import "JPUSHService.h"
 
 @interface SettingViewController : UIViewController < UITableViewDelegate, UITableViewDataSource, UMSocialUIDelegate>
 {

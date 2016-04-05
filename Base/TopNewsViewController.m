@@ -17,6 +17,18 @@
 
 @implementation TopNewsViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden = YES;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -281,5 +293,4 @@
     }
     [self.newsListView reloadSections:[NSIndexSet indexSetWithIndex:tap.view.tag - 100] withRowAnimation:UITableViewRowAnimationFade];
 }
-
 @end
