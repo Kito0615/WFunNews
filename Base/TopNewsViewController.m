@@ -85,7 +85,7 @@
     [_topNewsArr addObjectsFromArray:[NSKeyedUnarchiver unarchiveObjectWithData:localData]];
     
     [self.newsListView reloadData];
-    NSLog(@"load success!");
+    //NSLog(@"load success!");
 }
 
 - (void)saveToLocal
@@ -94,7 +94,7 @@
     NSData * localData = [NSKeyedArchiver archivedDataWithRootObject:_topNewsArr];
     [[NSUserDefaults standardUserDefaults] setObject:localData forKey:@"local"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    NSLog(@"save success!");
+    //NSLog(@"save success!");
 }
 
 - (void)loadData

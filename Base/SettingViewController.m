@@ -17,7 +17,7 @@
 
 #import "SettingViewController.h"
 
-@interface SettingViewController ()<CLLocationManagerDelegate>
+@interface SettingViewController ()<CLLocationManagerDelegate, UIAlertViewDelegate>
 {
     CLLocationManager * _locationManager;
     CLLocation * _currentLocation;
@@ -37,7 +37,7 @@
     _locationManager = [[CLLocationManager alloc] init];
     
     if (![CLLocationManager locationServicesEnabled]) {
-        NSLog(@"定位服务没有打开，请打开设置");
+        //NSLog(@"定位服务没有打开，请打开设置");
         return;
     }
     
@@ -80,7 +80,7 @@
     }
     if (indexPath.row == 0) {
         UISwitch * pushSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 60, 20)];
-        pushSwitch.on = _isPushOn;
+        pushSwitch.on = [self isAllowRemoteNotifications];
         [pushSwitch addTarget:self action:@selector(pushOn:) forControlEvents:UIControlEventValueChanged];
         cell.accessoryView = pushSwitch;
     }
@@ -94,16 +94,12 @@
 - (void)pushOn:(UISwitch *)sw
 {
     if (sw.on) {
-        NSLog(@"开启推送");
+        //NSLog(@"开启推送");
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
     } else {
-        NSLog(@"关闭推送");
+        //NSLog(@"关闭推送");
+        [[UIApplication sharedApplication] unregisterForRemoteNotifications];
     }
-    
-    [[NSUserDefaults standardUserDefaults] setObject:_isPushOn ? @"True" : @"False" forKey:@"Push"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    _isPushOn = !_isPushOn;
-    sw.on = _isPushOn;
 }
 
 #pragma mark -UITableViewDelegate
@@ -111,7 +107,7 @@
 {
     switch (indexPath.row) {
         case 1:
-            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Feedback", nil) message:[NSString stringWithFormat:@"Version:%@\n%@",[NSString stringWithFormat:@"%@(%@)",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]], NSLocalizedString(@"Mail", nil)] delegate:nil cancelButtonTitle:NSLocalizedString(@"Confirm", nil) otherButtonTitles: nil] show];
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Feedback", nil) message:[NSString stringWithFormat:@"Version:%@\n%@",[NSString stringWithFormat:@"%@(%@)",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]], NSLocalizedString(@"Rate", nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"NextTime", nil) otherButtonTitles:NSLocalizedString(@"Go", nil), nil] show];
             break;
         case 2:
             [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"About", nil) message:@"智机网崇尚“做站就是做人”的社区建设精神，坚持以会员为中心，不断创新，力求发展。目前是内国公认最大的手机、科技、新闻类网站。可以获取到最新最快的手机新闻资讯。" delegate:nil cancelButtonTitle:NSLocalizedString(@"Confirm", nil) otherButtonTitles: nil] show];
@@ -131,7 +127,7 @@
             break;
             
         default:
-            NSLog(@"%ld", indexPath.row);
+            //NSLog(@"%ld", indexPath.row);
             break;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -141,7 +137,7 @@
 - (void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
 {
     if (response.responseCode == UMSResponseCodeSuccess) {
-        NSLog(@"分享成功:%@", [[response.data allKeys] lastObject]);
+        //NSLog(@"分享成功:%@", [[response.data allKeys] lastObject]);
     }
 }
 
@@ -168,7 +164,7 @@
         
         NSDictionary * addressDict = placeMark.addressDictionary;
         
-        NSLog(@"==========位置：%@\n=========区域：%@\n=======详细：%@===========", location, region, addressDict);
+        //NSLog(@"==========位置：%@\n=========区域：%@\n=======详细：%@===========", location, region, addressDict);
         
         self.location.text = [NSString stringWithFormat:@"%@%@%@", addressDict[@"State"], addressDict[@"City"], addressDict[@"SubLocality"]];
         
@@ -184,8 +180,8 @@
     _currentLocation = location;
     CLLocationCoordinate2D coordinate = location.coordinate;
     
-    NSLog(@"经度：%f\n纬度：%f", coordinate.longitude, coordinate.latitude);
-    NSLog(@"海拔：%f\n方向：%f\n速度：%f", location.altitude, location.course, location.speed);
+    //NSLog(@"经度：%f\n纬度：%f", coordinate.longitude, coordinate.latitude);
+    //NSLog(@"海拔：%f\n方向：%f\n速度：%f", location.altitude, location.course, location.speed);
     
     [self loadWeatherWithUserLocation:location];
     [self reGeoCode];
@@ -217,13 +213,13 @@
                                            queue: [NSOperationQueue mainQueue]
                                completionHandler: ^(NSURLResponse *response, NSData *data, NSError *error){
                                    if (error) {
-                                       NSLog(@"Httperror: %@%ld", error.localizedDescription, error.code);
+                                       //NSLog(@"Httperror: %@%ld", error.localizedDescription, error.code);
                                    } else {
                                        
                                        NSDictionary * retDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                                        NSString * weatherStatus = [[[retDict objectForKey:@"showapi_res_body"] objectForKey:@"f1"] objectForKey:@"day_weather"];
                                        
-                                       NSLog(@"%@", weatherStatus);
+                                       //NSLog(@"%@", weatherStatus);
                                        
                                        NSRange rainRange = [weatherStatus rangeOfString:@"雨"];
                                        NSRange sunnyRange = [weatherStatus rangeOfString:@"晴"];
@@ -254,6 +250,38 @@
                                        _requestSuccess = YES;
                                    }
                                }];
+    }
+}
+
+- (BOOL)isAllowRemoteNotifications
+{
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] > 7.0) {
+        UIRemoteNotificationType notificationType = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+        if (notificationType != UIRemoteNotificationTypeNone) {
+            return YES;
+        } else {
+            return NO;
+        }
+    }  else {
+        UIUserNotificationSettings * notificationSettings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+        
+        if (notificationSettings.types != UIUserNotificationTypeNone) {
+            return YES;
+        } else {
+            return NO;
+        }
+    }
+}
+#pragma mark -UIAlertViewDelegate
+- (void)alertViewCancel:(UIAlertView *)alertView
+{
+    ;
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{    
+    if (buttonIndex == 1) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"iitms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1048971626"]];
     }
 }
 

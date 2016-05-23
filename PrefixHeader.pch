@@ -1,0 +1,20 @@
+//
+//  PrefixHeader.pch
+//  WFunNews
+//
+//  Created by AnarL on 16/5/9.
+//  Copyright © 2016年 AnarL. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#define IMAGE_REGEX @"(http|ftp|https):\\/\\/[\\w\\-_]+(\\.[\\w\\-_]+)+([\\w\\-\\.,@?^=%&amp;:/~\\+#]*[\\w\\-\\@?^=%&amp;/~\\+#])?.(png|jpg)"
+#define SUPER_LINK_REGEX @"(http|ftp|https):\\/\\/[\\w\\-_]+(\\.[\\w\\-_]+)+([\\w\\-\\.,@?^=%&amp;:/~\\+#]*[\\w\\-\\@?^=%&amp;/~\\+#])?"
+#define VIDEO_LINK_REGEX @"(http|https):\\/\\/v.youku.com\\/v_show\\/id_(\\w*)==\\.html"
+#define SUPER_LINK_WORD_REGEX @"(>)\\w*(</a>)"
+
+#endif /* PrefixHeader_pch */

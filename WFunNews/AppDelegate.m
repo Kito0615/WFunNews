@@ -21,7 +21,8 @@
     
     [UMSocialData setAppKey:@"5613779167e58e0d200008c7"];
     
-    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"1309410722" RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"1309410722" secret:@"1fa7c4926e71941cad08401cf8c407a5" RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+//    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"1309410722" RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     [UMSocialQQHandler setQQWithAppId:@"1104820983" appKey:@"77cil6x3qIJtIJnK" url:@"http://bbs.wfun.com"];
     [UMSocialWechatHandler setWXAppId:@"wx225a5e952bc8c22f" appSecret:@"64ece97d5cc3c4b85a87dcb926194b52" url:@"http://bbs.wfun.com"];
     
@@ -35,7 +36,6 @@
     
     [_window makeKeyAndVisible];
     
-#if 1
     // Required
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
         //可以添加自定义categories
@@ -58,7 +58,6 @@
     installation.url = [NSURL URLWithString:@"https://collector.bughd.com/kscrash?key=f579f5f4db3d3d46612a40b4d06e66bb"];
     [installation install];
     [installation sendAllReportsWithCompletion:nil];
-#endif
     
     return YES;
 }
@@ -96,7 +95,7 @@
         [JPUSHService handleRemoteNotification:userInfo];
         completionHandler(UIBackgroundFetchResultNewData);
     } else {
-        NSLog(@"Push Off");
+        //NSLog(@"Push Off");
     }
 }
 

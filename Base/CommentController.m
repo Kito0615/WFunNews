@@ -25,12 +25,14 @@
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:(240 / 255.0) green:(97 / 255.0) blue:(102 / 255.0) alpha:1.00];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:COLORWITHRGB(255, 255, 255)};
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    self.navigationController.navigationBarHidden = YES;
+//    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)viewDidLoad {
@@ -124,7 +126,7 @@
     _requestManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     NSString * url = [NSString stringWithFormat:@"%@&page=%ld&app=anar0615", self.commentUrl, _currentCommentPage];
-    NSLog(@"%@", url);
+    //NSLog(@"%@", url);
     
     [_requestManager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
@@ -348,8 +350,8 @@
     
     NSString * postUrlStr = [NSString stringWithFormat:@"http://api.wpxap.com/Send?tid=%ld&app=anar0615", self.newsId.integerValue];
     NSString * tokenStr = [NSString stringWithFormat:@"%ld|%ld|1173785|%@|cappuccino", self.newsId.integerValue, self.commentPid.integerValue, [[UIDevice currentDevice].identifierForVendor UUIDString]];
-    NSLog(@"%@", [[UIDevice currentDevice].identifierForVendor UUIDString]);
-    NSLog(@"%ld", self.commentPid.integerValue);
+    //NSLog(@"%@", [[UIDevice currentDevice].identifierForVendor UUIDString]);
+    //NSLog(@"%ld", self.commentPid.integerValue);
     NSString * encodedToken = [Base64Encryption base64StringFromText:tokenStr];
     
     NSDictionary * postDict = @{@"token":encodedToken, @"message":self.commentField.text, @"devicename":[UIDevice currentDevice].name};
@@ -367,8 +369,8 @@
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", error);
-        NSLog(@"%@", error.localizedFailureReason);
+        //NSLog(@"%@", error);
+        //NSLog(@"%@", error.localizedFailureReason);
     }];
     [self.commentField resignFirstResponder];
     self.commentField.text = @"";

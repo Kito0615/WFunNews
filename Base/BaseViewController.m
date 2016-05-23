@@ -38,6 +38,20 @@
     [self pullToRefresh];
     [self pullToLoadMore];
 }
+
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    [super viewWillAppear:animated];
+//    self.navigationController.navigationBar.hidden = YES;
+//}
+//
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:animated];
+//    self.navigationController.navigationBar.hidden = NO;
+//}
+
+
 - (void)isOnline
 {
     _reachableManager = [Reachability reachabilityWithHostName:@"bbs.wfun.com"];
@@ -81,7 +95,7 @@
     [self.newsList.header endRefreshing];
     [self.newsList.footer endRefreshing];
     
-    NSLog(@"load successed!");
+    //NSLog(@"load successed!");
 }
 
 
@@ -93,7 +107,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:newsData forKey:[NSString stringWithFormat:@"news%d", self.newsClassId]];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    NSLog(@"save successed!");
+    //NSLog(@"save successed!");
     
 }
 
@@ -104,7 +118,7 @@
     _requestManager = [AFHTTPRequestOperationManager manager];
     _requestManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    NSLog(@"%@", [NSString stringWithFormat:@"%@%@", BASE_URL, [NSString stringWithFormat:@"&sid=%d&page=%d", sid,page]]);
+    //NSLog(@"%@", [NSString stringWithFormat:@"%@%@", BASE_URL, [NSString stringWithFormat:@"&sid=%d&page=%d", sid,page]]);
     
     [_requestManager GET:[NSString stringWithFormat:@"%@%@", BASE_URL, [NSString stringWithFormat:@"&sid=%d&page=%d", sid,page]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary * responseData = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
@@ -187,6 +201,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+#if 0
     NewsDetailViewController * ndvc = [[NewsDetailViewController alloc] init];
     NewsModel * model = _newsArr[indexPath.row];
     ndvc.model = model;
@@ -201,11 +216,18 @@
     ndvc.webUrl = [NSString stringWithFormat:@"%@%@", model.newsAPIUrl, @"&app=anar0615"];
     ndvc.hidesBottomBarWhenPushed = YES;
     
-    [self.navigationController.navigationBar setHidden:NO];
-    
-    
     [self.navigationController pushViewController:ndvc animated:YES];
+#endif
+#if 1
+    NewsModel * model = _newsArr[indexPath.row];
     
+    NewsContentViewController * ncvc = [[NewsContentViewController alloc] initWithUrl:model.newsAPIUrl];
+    
+    ncvc.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:ncvc animated:YES];
+    
+#endif
 }
 
 #pragma mark -上拉加载更多

@@ -15,6 +15,7 @@
 #import "UIImageView+WebCache.h"
 #import "HexFromString.h"
 #import "NewsDetailViewController.h"
+#import "NewsContentViewController.h"
 
 static BOOL _netWorkChecked;
 

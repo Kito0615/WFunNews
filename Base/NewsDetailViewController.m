@@ -9,6 +9,11 @@
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
+#define IMAGE_REGEX @"(http|ftp|https):\\/\\/[\\w\\-_]+(\\.[\\w\\-_]+)+([\\w\\-\\.,@?^=%&amp;:/~\\+#]*[\\w\\-\\@?^=%&amp;/~\\+#])?.(png|jpg)"
+#define SUPER_LINK_REGEX @"(http|ftp|https):\\/\\/[\\w\\-_]+(\\.[\\w\\-_]+)+([\\w\\-\\.,@?^=%&amp;:/~\\+#]*[\\w\\-\\@?^=%&amp;/~\\+#])?"
+#define VIDEO_LINK_REGEX @"(http|https):\\/\\/v.youku.com\\/v_show\\/id_(\\w*)==\\.html"
+#define SUPER_LINK_WORD_REGEX @"(>)\\w*(</a>)"
+
 #define SUBMIT_COMMENT_URL @"http://api.wpxap.com/Send?tid=%ld&app=anar0615"
 #define COLORWITHRGB(r,g,b) [UIColor colorWithRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:1]
 #define CSS_STYLE @"<style type=\"text/css\">img{width:expression(this.width>%lf?\"%lfpx\":this.width+\"px\"); } </style>"
@@ -19,6 +24,9 @@
 
 @interface NewsDetailViewController () <SharePlateProtocal>
 {
+    NSMutableArray * _imgUrls;
+    NSMutableArray * _videoUrls;
+    
     SharePlate * _sharePlate;
     UIView * _shadowView;
     
@@ -35,7 +43,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = NO;
     
     self.navigationController.navigationBar.tintColor = COLORWITHRGB(255, 255, 255);
     
@@ -47,6 +54,7 @@
     self.navigationController.navigationBar.barTintColor = COLORWITHRGB(240, 95, 102);
     [self createNavigationBarButtons];
     
+    self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -76,7 +84,7 @@
 
 - (void)isOnline
 {
-    _reachableManager = [Reachability reachabilityWithHostName:@"bbs.wfun.com"];
+    _reachableManager = [Reachability reachabilityWithHostName:@"http://bbs.wfun.com"];
     switch (_reachableManager.currentReachabilityStatus) {
         case ReachableViaWiFi:
             [self loadNewsContent];
@@ -130,7 +138,7 @@
         
         [self.newsContentView loadHTMLString:_webString baseURL:nil];
         
-        NSLog(@"HTML CONTENT:%@", _webString);
+        //NSLog(@"HTML CONTENT:%@", _webString);
         
         self.newsContentView.scrollView.showsVerticalScrollIndicator = NO;
         [self.newsContentView setDataDetectorTypes:UIDataDetectorTypeAll];
@@ -150,7 +158,7 @@
         
         NSRange lastRange = NSMakeRange(subStringRange.location, subStringRange.length);
         
-        NSLog(@"%@", NSStringFromRange(subStringRange));
+        //NSLog(@"%@", NSStringFromRange(subStringRange));
         
         [sourceStr insertString:@"<br>" atIndex:lastRange.location];
         
@@ -161,7 +169,7 @@
     
     while (subStringRange.location != NSNotFound) {
         NSRange lastRange = NSMakeRange(subStringRange.location, subStringRange.length);
-        NSLog(@"%@", NSStringFromRange(lastRange));
+        //NSLog(@"%@", NSStringFromRange(lastRange));
         
         [sourceStr insertString:@"<br>" atIndex:lastRange.location + lastRange.length];
         
@@ -183,7 +191,7 @@
 {
     UIButton * shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     shareBtn.frame = CGRectMake(4, 0, 22, 22);
-    [shareBtn setBackgroundImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+    [shareBtn setBackgroundImage:[UIImage imageNamed:@"share_btn"] forState:UIControlStateNormal];
     [shareBtn addTarget:self action:@selector(shareButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton * commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -203,7 +211,7 @@
 #pragma mark -分享按钮
 - (void)shareButtonClicked
 {
-    NSLog(@"分享");
+    //NSLog(@"分享");
     
     /**
      *  设置各个平台扩展内容
@@ -215,7 +223,7 @@
                                          appKey:@"5613779167e58e0d200008c7"
                                       shareText:[NSString stringWithFormat:@"%@%@", self.model.newsTitle, self.model.newsWebUrl]
                                      shareImage:[_cacheView image]
-                                shareToSnsNames:@[UMShareToSina, UMShareToQQ, UMShareToQzone, UMShareToRenren,UMShareToTencent, UMShareToWechatTimeline, UMShareToLWSession, UMShareToWechatFavorite]
+                                shareToSnsNames:@[UMShareToSina, UMShareToQQ, UMShareToQzone, UMShareToRenren,UMShareToTencent, UMShareToWechatTimeline, UMShareToWechatSession, UMShareToWechatFavorite]
                                        delegate:self];
 #endif
     
@@ -282,7 +290,7 @@
             
             [self performSelector:@selector(cancelAlertView:) withObject:alert afterDelay:1];
             
-            NSLog(@"成功分享到:%@",[[response.data allKeys] lastObject]);
+            //NSLog(@"成功分享到:%@",[[response.data allKeys] lastObject]);
         }
     }];
 }
@@ -296,7 +304,7 @@
             [alert show];
             
             [self performSelector:@selector(cancelAlertView:) withObject:alert afterDelay:1];
-            NSLog(@"成功分享到:%@",[[response.data allKeys] lastObject]);
+            //NSLog(@"成功分享到:%@",[[response.data allKeys] lastObject]);
         }
     }];
 
@@ -312,7 +320,7 @@
         [self performSelector:@selector(cancelAlertView:) withObject:alert afterDelay:1];
         
         if (response.responseCode == UMSResponseCodeSuccess) {
-            NSLog(@"成功分享到:%@",[[response.data allKeys] lastObject]);
+            //NSLog(@"成功分享到:%@",[[response.data allKeys] lastObject]);
         }
     }];
 
@@ -329,7 +337,7 @@
             
             [self performSelector:@selector(cancelAlertView:) withObject:alert afterDelay:1];
             
-            NSLog(@"成功分享到:%@",[[response.data allKeys] lastObject]);
+            //NSLog(@"成功分享到:%@",[[response.data allKeys] lastObject]);
         }
     }];
 
@@ -345,7 +353,7 @@
             
             [self performSelector:@selector(cancelAlertView:) withObject:alert afterDelay:1];
             
-            NSLog(@"成功分享到:%@",[[response.data allKeys] lastObject]);
+            //NSLog(@"成功分享到:%@",[[response.data allKeys] lastObject]);
         }
     }];
 
@@ -361,7 +369,7 @@
             
             [self performSelector:@selector(cancelAlertView:) withObject:alert afterDelay:1];
             
-            NSLog(@"成功分享到:%@",[[response.data allKeys] lastObject]);
+            //NSLog(@"成功分享到:%@",[[response.data allKeys] lastObject]);
         }
     }];
 
@@ -371,14 +379,14 @@
 - (void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
 {
     if (response.responseCode == UMSResponseCodeSuccess) {
-        NSLog(@"分享成功:%@", [[response.data allKeys] lastObject]);
+        //NSLog(@"分享成功:%@", [[response.data allKeys] lastObject]);
     }
 }
 
 #pragma mark -查看评论按钮
 - (void)commentButtonClicked
 {
-    NSLog(@"评论");
+    //NSLog(@"评论");
     
     CommentController * commentVC = [[CommentController alloc] init];
     commentVC.commentUrl = self.newsCommentUrl;
@@ -441,8 +449,8 @@
     
     NSString * postUrlStr = [NSString stringWithFormat:@"http://api.wpxap.com/Send?tid=%ld&app=anar0615", self.newsId.integerValue];
     NSString * tokenStr = [NSString stringWithFormat:@"%ld|%ld|1173785|%@|cappuccino", self.newsId.integerValue, self.newsId.integerValue, [[UIDevice currentDevice].identifierForVendor UUIDString]];
-    NSLog(@"%@", [[UIDevice currentDevice].identifierForVendor UUIDString]);
-    NSLog(@"%ld", self.newsId.integerValue);
+    //NSLog(@"%@", [[UIDevice currentDevice].identifierForVendor UUIDString]);
+    //NSLog(@"%ld", self.newsId.integerValue);
     NSString * encodedToken = [Base64Encryption base64StringFromText:tokenStr];
     
     NSDictionary * postDict = @{@"token":encodedToken, @"message":self.commentField.text, @"devicename":[UIDevice currentDevice].name};
@@ -460,8 +468,8 @@
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", error);
-        NSLog(@"%@", error.localizedFailureReason);
+        //NSLog(@"%@", error);
+        //NSLog(@"%@", error.localizedFailureReason);
     }];
     [self.commentField resignFirstResponder];
     self.commentField.text = @"";

@@ -30,7 +30,6 @@
 }
 
 @property (nonatomic, strong) NewsModel * model;
-
 @property (nonatomic, strong) NSNumber * newsId;
 @property (nonatomic, strong) NSNumber * replyId;
 @property (nonatomic, copy) NSString * newsTitleString;
