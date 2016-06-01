@@ -11,23 +11,25 @@
 
 #import "TopNewsViewController.h"
 
+#import "NewsContentViewController.h"
+
 @interface TopNewsViewController ()
 
 @end
 
 @implementation TopNewsViewController
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = NO;
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBarHidden = YES;
-}
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    [super viewWillAppear:animated];
+//    self.navigationController.navigationBarHidden = NO;
+//}
+//
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:animated];
+//    self.navigationController.navigationBarHidden = YES;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -114,8 +116,10 @@
         NSMutableArray * topDayMutArr = [[NSMutableArray alloc] init];
         
         for (NSDictionary * dict in topDayArr) {
-            NewsModel * model = [[NewsModel alloc] initWithDict:dict];
-            [topDayMutArr addObject:model];
+            if (![dict isKindOfClass:[NSNull class]]) {
+                NewsModel * model = [[NewsModel alloc] initWithDict:dict];
+                [topDayMutArr addObject:model];
+            }
         }
         [_topNewsArr addObject:topDayMutArr];
         
@@ -123,8 +127,10 @@
         NSMutableArray * topWeekMutArr = [[NSMutableArray alloc] init];
         
         for (NSDictionary * dict in topWeekArr) {
-            NewsModel * model = [[NewsModel alloc] initWithDict:dict];
-            [topWeekMutArr addObject:model];
+            if (![dict isKindOfClass:[NSNull class]]) {
+                NewsModel * model = [[NewsModel alloc] initWithDict:dict];
+                [topWeekMutArr addObject:model];
+            }
         }
         [_topNewsArr addObject:topWeekMutArr];
         
@@ -132,8 +138,10 @@
         NSMutableArray * topMonthMutArr = [[NSMutableArray alloc] init];
         
         for (NSDictionary * dict in topMonthArr) {
-            NewsModel * model = [[NewsModel alloc] initWithDict:dict];
-            [topMonthMutArr addObject:model];
+            if (![dict isKindOfClass:[NSNull class]]) {
+                NewsModel * model = [[NewsModel alloc] initWithDict:dict];
+                [topMonthMutArr addObject:model];
+            }
         }
         [_topNewsArr addObject:topMonthMutArr];
         [self.newsListView reloadData];
@@ -255,24 +263,29 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NewsDetailViewController * ndvc = [[NewsDetailViewController alloc] init];
+//    NewsDetailViewController * ndvc = [[NewsDetailViewController alloc] init];
     NewsModel * model = [_topNewsArr[indexPath.section] objectAtIndex:indexPath.row];
-    ndvc.model = model;
+    NewsContentViewController * ncvc = [[NewsContentViewController alloc] initWithUrl:model.newsAPIUrl];
     
-    ndvc.newsTitleString = model.newsTitle;
-    
-    NSDate * newsDate = [NSDate dateWithTimeIntervalSince1970:[model.newsDBDateLine floatValue]];
-    
-    NSDateFormatter * df = [[NSDateFormatter alloc] init];
-    df.dateFormat = @"yyyy年MM月dd日 HH:mm:ss";
-    
-    ndvc.newsInfoString = [NSString stringWithFormat:@"%@ | %@", [df stringFromDate:newsDate], model.newsAuthorName];
-    
-    
-    ndvc.hidesBottomBarWhenPushed = YES;
-    ndvc.webUrl = model.newsAPIUrl;
-    [self.navigationController pushViewController:ndvc animated:YES];
+//    ndvc.model = model;    
+//    ndvc.newsTitleString = model.newsTitle;
+//    
+//    NSDate * newsDate = [NSDate dateWithTimeIntervalSince1970:[model.newsDBDateLine floatValue]];
+//    
+//    NSDateFormatter * df = [[NSDateFormatter alloc] init];
+//    df.dateFormat = @"yyyy年MM月dd日 HH:mm:ss";
+//    
+//    ndvc.newsInfoString = [NSString stringWithFormat:@"%@ | %@", [df stringFromDate:newsDate], model.newsAuthorName];
+//    
+//    
+//    ndvc.hidesBottomBarWhenPushed = YES;
+//    ndvc.webUrl = model.newsAPIUrl;
+//    [self.navigationController pushViewController:ndvc animated:YES];
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.navigationController pushViewController:ncvc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    ncvc.hidesBottomBarWhenPushed = YES;
 }
 
 #pragma mark -点击分组头视图响应事件

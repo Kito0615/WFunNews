@@ -11,7 +11,6 @@
 #import "MyTestController.h"
 #import "UMSocial.h"
 #import "UMSocialSinaSSOHandler.h"
-//#import "UMSocialSinaHandler.h"
 #import "UMSocialSinaSSOHandler.h"
 #import "UMSocialQQHandler.h"
 #import "UMSocialWechatHandler.h"
